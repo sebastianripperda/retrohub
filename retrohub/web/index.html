@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="de" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RetroHub</title>
+<meta name="description" content="RetroHub – lokale Spieleplattform">
+<meta name="theme-color" content="#14171C">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/app.css?v=9.1.1">
+<script src="assets/theme.js?v=9.1.1"></script>
+<script src="assets/qr.js?v=9.1.1" defer></script>
+<script src="assets/app.js?v=9.1.1" defer></script>
+</head>
+<body>
+<svg width="0" height="0" class="sr-only" aria-hidden="true" focusable="false">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h5v-6h4v6h5V10"/></symbol>
+  <symbol id="i-games" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v3h6V3"/><rect x="8" y="9" width="8" height="6" rx="1"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></symbol>
+  <symbol id="i-tv" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="13" rx="2"/><path d="M8 21h8M12 18v3"/></symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4M12 14v4M8 21h8M9 18h6"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/></symbol>
+  <symbol id="i-friends" viewBox="0 0 24 24"><circle cx="8" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.5"/><path d="M2 20a6 6 0 0 1 12 0M14 20a4.5 4.5 0 0 1 8 0"/></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24"><path d="M10 4H5v16h5M14 8l4 4-4 4M18 12H9"/></symbol>
+  <symbol id="i-gamepad" viewBox="0 0 24 24"><path d="M7 8h10a5 5 0 0 1 4.6 7l-.6 1.4a2.5 2.5 0 0 1-4.3.5L15 15H9l-1.7 1.9a2.5 2.5 0 0 1-4.3-.5L2.4 15A5 5 0 0 1 7 8z"/><path d="M7 11v3M5.5 12.5h3M16 12h.01M18 13.5h.01"/></symbol>
+</svg>
+<a class="skip" href="#main">Zum Inhalt springen</a>
+<div class="app">
+  <aside class="sidebar">
+    <a class="brand" href="#home" aria-label="RetroHub – Start"><img class="brand-mark" src="assets/favicon.svg" alt=""><span>RetroHub</span></a>
+    <nav aria-label="Hauptnavigation" class="stack">
+      <div class="nav-group"><h2>Spielen</h2>
+        <a class="nav-link" href="#home" title="Start"><svg class="i" aria-hidden="true"><use href="#i-home"/></svg><span class="nav-label">Start</span></a>
+        <a class="nav-link" href="#spiele" title="Spiele"><svg class="i" aria-hidden="true"><use href="#i-games"/></svg><span class="nav-label">Spiele</span></a>
+        <a class="nav-link" href="#favoriten" title="Favoriten"><svg class="i" aria-hidden="true"><use href="#i-heart"/></svg><span class="nav-label">Favoriten</span></a>
+      </div>
+      <div class="nav-group"><h2>Gemeinsam</h2>
+        <a class="nav-link" href="#gemeinsam" title="Netplay"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg><span class="nav-label">Netplay</span></a>
+        <a class="nav-link" href="#couch" title="Couch-Modus"><svg class="i" aria-hidden="true"><use href="#i-tv"/></svg><span class="nav-label">Couch-Modus</span></a>
+        <a class="nav-link" href="#turniere" title="Turniere"><svg class="i" aria-hidden="true"><use href="#i-trophy"/></svg><span class="nav-label">Turniere</span></a>
+        <a class="nav-link" href="#freunde" data-adult title="Freunde"><svg class="i" aria-hidden="true"><use href="#i-friends"/></svg><span class="nav-label">Freunde</span></a>
+        <a class="nav-link" href="#chat" data-adult title="Chat"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg><span class="nav-label">Chat</span></a>
+      </div>
+      <div class="nav-group"><h2>Konto und System</h2>
+        <a class="nav-link" href="#profil" title="Profil"><svg class="i" aria-hidden="true"><use href="#i-user"/></svg><span class="nav-label">Profil</span></a>
+        <a class="nav-link" href="#einstellungen" title="Einstellungen"><svg class="i" aria-hidden="true"><use href="#i-settings"/></svg><span class="nav-label">Einstellungen</span></a>
+        <a class="nav-link" href="#admin" data-admin title="Administration"><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg><span class="nav-label">Administration</span></a>
+      </div>
+    </nav>
+    <p class="side-status" id="conn"><strong><span class="dot" aria-hidden="true"></span><span id="conn-text">Verbinde …</span></strong><span id="conn-user"></span></p>
+  </aside>
+  <div class="column">
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="RetroHub – Start"><img class="brand-mark" src="assets/favicon.svg" alt=""><span>RetroHub</span></a>
+      <form class="search" role="search" id="search-form">
+        <label class="sr-only" for="search">Spiele durchsuchen</label>
+        <svg class="i" aria-hidden="true"><use href="#i-search"/></svg>
+        <input id="search" type="search" placeholder="Spiele durchsuchen" autocomplete="off" enterkeyhint="search">
+      </form>
+      <div class="top-actions">
+        <a class="icon-btn bell" href="#mitteilungen" id="bell" aria-label="Mitteilungen"><svg class="i" aria-hidden="true"><use href="#i-bell"/></svg><span class="badge" id="badge" hidden></span></a>
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Helles Farbschema verwenden"><svg class="i" aria-hidden="true"><use href="#i-sun"/></svg></button>
+        <a class="icon-btn" href="#profil" aria-label="Profil öffnen"><svg class="i" aria-hidden="true"><use href="#i-user"/></svg></a>
+      </div>
+    </header>
+    <main id="main" tabindex="-1"><noscript><p>RetroHub benötigt JavaScript.</p></noscript></main>
+  </div>
+</div>
+<nav class="bottomnav" aria-label="Schnellnavigation">
+  <a href="#home"><svg class="i" aria-hidden="true"><use href="#i-home"/></svg>Start</a>
+  <a href="#spiele"><svg class="i" aria-hidden="true"><use href="#i-games"/></svg>Spiele</a>
+  <a href="#gemeinsam"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg>Netplay</a>
+  <a href="#freunde" data-adult><svg class="i" aria-hidden="true"><use href="#i-friends"/></svg>Freunde</a>
+  <a href="#mehr"><svg class="i" aria-hidden="true"><use href="#i-more"/></svg>Mehr</a>
+</nav>
+<dialog id="detail" aria-labelledby="detail-title"><div class="sheet" id="detail-body"></div></dialog>
+<dialog id="player" class="player" aria-labelledby="player-title">
+  <div class="player-bar">
+    <h2 id="player-title">Spiel</h2>
+    <span class="score" id="player-score" aria-live="polite"></span>
+    <button class="btn small secondary" type="button" id="player-saves" hidden>Spielstände</button>
+    <button class="btn small secondary" type="button" id="player-mute" aria-pressed="false" hidden>Ton aus</button>
+    <button class="icon-btn" type="button" id="player-close" aria-label="Spiel beenden"><svg class="i" aria-hidden="true"><use href="#i-close"/></svg></button>
+  </div>
+  <div class="stage" id="stage"></div>
+</dialog>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

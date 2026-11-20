@@ -1,0 +1,794 @@
+{
+ "schema": 2,
+ "note": "RetroHub 9: keine vorinstallierten Spiele. Emulator-Oberfläche und Kerne von EmulatorJS 4.2.3 (npm), je Paket per SHA-256 festgelegt.",
+ "games": [],
+ "roms": [],
+ "emulators": [
+  {
+   "id": "emulatorjs",
+   "title": "EmulatorJS (Oberfläche)",
+   "license": "GPL-3.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/emulatorjs/-/emulatorjs-4.2.3.tgz",
+   "sha256": "8033a18a3398cae5efd7a4c12a633b10672435977290959633d671365b589639",
+   "size": 548792,
+   "files": [
+    {
+     "from": "package/data/loader.js",
+     "to": "loader.js"
+    },
+    {
+     "from": "package/data/emulator.css",
+     "to": "emulator.css"
+    },
+    {
+     "from": "package/data/src",
+     "to": "src"
+    },
+    {
+     "from": "package/data/compression",
+     "to": "compression"
+    },
+    {
+     "from": "package/data/localization",
+     "to": "localization"
+    },
+    {
+     "from": "package/LICENSE",
+     "to": "LICENSE-EmulatorJS-GPL-3.0.txt"
+    }
+   ],
+   "patches": [
+    {
+     "title": "Netplay: leere Bildmarken des Gastgebers beim Gast vermerken",
+     "file": "src/emulator.js",
+     "find": "if (!value.connected_input || value.connected_input[0] < 0) return;",
+     "replace": "if (!value.connected_input || value.connected_input[0] < 0) { /* RetroHub: auch Bilder ohne Eingabe als empfangen vermerken, sonst wartet der Gast endlos */ if (!this.netplay.owner) { this.netplay.inputsData[inFrame] || (this.netplay.inputsData[inFrame] = []); } return; }"
+    },
+    {
+     "title": "Netplay: Absturz in der Bildschleife des Gastes bei fehlenden Daten",
+     "file": "src/emulator.js",
+     "find": "this.netplay.inputsData[this.netplay.currentFrame].forEach((value) => {",
+     "replace": "(this.netplay.inputsData[this.netplay.currentFrame] || []).forEach((value) => { /* RetroHub: Liste kann fehlen */"
+    },
+    {
+     "title": "Netplay: Startbild beim Zurücksetzen absolut bestimmen",
+     "file": "src/emulator.js",
+     "find": "this.netplay.init_frame = this.netplay.currentFrame;",
+     "replace": "this.netplay.init_frame = parseInt(this.gameManager.getFrameNum()); /* RetroHub: absolut statt relativ */"
+    }
+   ]
+  },
+  {
+   "id": "core-a5200",
+   "title": "Atari 5200",
+   "core": "a5200",
+   "license": "GPL-2.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-a5200/-/core-a5200-4.2.3.tgz",
+   "sha256": "54585ff9e5f4dec7b47eb5bdd4bb93ced631db320f52c5d7e47993a6666d8707",
+   "size": 3642256,
+   "files": [
+    {
+     "from": "package/a5200-legacy-wasm.data",
+     "to": "cores/a5200-legacy-wasm.data"
+    },
+    {
+     "from": "package/a5200-wasm.data",
+     "to": "cores/a5200-wasm.data"
+    },
+    {
+     "from": "package/reports/a5200.json",
+     "to": "cores/reports/a5200.json"
+    }
+   ]
+  },
+  {
+   "id": "core-beetle_vb",
+   "title": "Virtual Boy",
+   "core": "beetle_vb",
+   "license": "GPL-2.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-beetle_vb/-/core-beetle_vb-4.2.3.tgz",
+   "sha256": "ba60ad6815e8a340696d1d3549fca687e86dba328889f68d9b9683c9c0c978a7",
+   "size": 3550069,
+   "files": [
+    {
+     "from": "package/beetle_vb-legacy-wasm.data",
+     "to": "cores/beetle_vb-legacy-wasm.data"
+    },
+    {
+     "from": "package/beetle_vb-wasm.data",
+     "to": "cores/beetle_vb-wasm.data"
+    },
+    {
+     "from": "package/reports/beetle_vb.json",
+     "to": "cores/reports/beetle_vb.json"
+    }
+   ]
+  },
+  {
+   "id": "core-melonds",
+   "title": "Nintendo DS",
+   "core": "melonds",
+   "license": "GPL-3.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-melonds/-/core-melonds-4.2.3.tgz",
+   "sha256": "6cbd17e0019bd0896265b2d03490a9f14627335ece3daeb6208ff89ee08d0045",
+   "size": 4903401,
+   "files": [
+    {
+     "from": "package/melonds-legacy-wasm.data",
+     "to": "cores/melonds-legacy-wasm.data"
+    },
+    {
+     "from": "package/melonds-wasm.data",
+     "to": "cores/melonds-wasm.data"
+    },
+    {
+     "from": "package/reports/melonds.json",
+     "to": "cores/reports/melonds.json"
+    }
+   ]
+  },
+  {
+   "id": "core-fbneo",
+   "title": "Arcade (FinalBurn Neo)",
+   "core": "fbneo",
+   "license": "FBNeo (nicht-kommerziell)",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-fbneo/-/core-fbneo-4.2.3.tgz",
+   "sha256": "1b7a35a2123d66f30b58650b6de4fff5e115673aab3eabe23a207aa7c547da32",
+   "size": 32923117,
+   "files": [
+    {
+     "from": "package/fbneo-legacy-wasm.data",
+     "to": "cores/fbneo-legacy-wasm.data"
+    },
+    {
+     "from": "package/fbneo-wasm.data",
+     "to": "cores/fbneo-wasm.data"
+    },
+    {
+     "from": "package/reports/fbneo.json",
+     "to": "cores/reports/fbneo.json"
+    }
+   ]
+  },
+  {
+   "id": "core-fceumm",
+   "title": "NES / Famicom",
+   "core": "fceumm",
+   "license": "GPL-2.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-fceumm/-/core-fceumm-4.2.3.tgz",
+   "sha256": "72d7ec8a1cace14448b9f2e177e64a37120543e117d274072b02b67576d54025",
+   "size": 4333221,
+   "files": [
+    {
+     "from": "package/fceumm-legacy-wasm.data",
+     "to": "cores/fceumm-legacy-wasm.data"
+    },
+    {
+     "from": "package/fceumm-wasm.data",
+     "to": "cores/fceumm-wasm.data"
+    },
+    {
+     "from": "package/reports/fceumm.json",
+     "to": "cores/reports/fceumm.json"
+    }
+   ]
+  },
+  {
+   "id": "core-gambatte",
+   "title": "Game Boy / Color",
+   "core": "gambatte",
+   "license": "GPL-2.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-gambatte/-/core-gambatte-4.2.3.tgz",
+   "sha256": "2edc2ed30fb18da28f67e95209a25f18307913a7eaba693d0d8481986c2fdd32",
+   "size": 3987815,
+   "files": [
+    {
+     "from": "package/gambatte-legacy-wasm.data",
+     "to": "cores/gambatte-legacy-wasm.data"
+    },
+    {
+     "from": "package/gambatte-wasm.data",
+     "to": "cores/gambatte-wasm.data"
+    },
+    {
+     "from": "package/reports/gambatte.json",
+     "to": "cores/reports/gambatte.json"
+    }
+   ]
+  },
+  {
+   "id": "core-gearcoleco",
+   "title": "ColecoVision",
+   "core": "gearcoleco",
+   "license": "GPL-3.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-gearcoleco/-/core-gearcoleco-4.2.3.tgz",
+   "sha256": "c1069cf6dc8719c3830de34dee3e21f520639e613833b7b07c1b3efd067b82a6",
+   "size": 3687152,
+   "files": [
+    {
+     "from": "package/gearcoleco-legacy-wasm.data",
+     "to": "cores/gearcoleco-legacy-wasm.data"
+    },
+    {
+     "from": "package/gearcoleco-wasm.data",
+     "to": "cores/gearcoleco-wasm.data"
+    },
+    {
+     "from": "package/reports/gearcoleco.json",
+     "to": "cores/reports/gearcoleco.json"
+    }
+   ]
+  },
+  {
+   "id": "core-genesis_plus_gx",
+   "title": "Sega Master System, Mega Drive, Game Gear, Mega-CD",
+   "core": "genesis_plus_gx",
+   "license": "Genesis Plus GX (nicht-kommerziell)",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-genesis_plus_gx/-/core-genesis_plus_gx-4.2.3.tgz",
+   "sha256": "3f4ac27829f3a86734cb1b27f62078a1f1413f08cb0bb7e421b95aec31a0dfa3",
+   "size": 4937706,
+   "files": [
+    {
+     "from": "package/genesis_plus_gx-legacy-wasm.data",
+     "to": "cores/genesis_plus_gx-legacy-wasm.data"
+    },
+    {
+     "from": "package/genesis_plus_gx-wasm.data",
+     "to": "cores/genesis_plus_gx-wasm.data"
+    },
+    {
+     "from": "package/reports/genesis_plus_gx.json",
+     "to": "cores/reports/genesis_plus_gx.json"
+    }
+   ]
+  },
+  {
+   "id": "core-picodrive",
+   "title": "Sega 32X",
+   "core": "picodrive",
+   "license": "MAME-artig (nicht-kommerziell)",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-picodrive/-/core-picodrive-4.2.3.tgz",
+   "sha256": "70a700f8752ac98b7819e5392e39f6935fd36d645e1113a5835e9fb0bd9f95b0",
+   "size": 4262969,
+   "files": [
+    {
+     "from": "package/picodrive-legacy-wasm.data",
+     "to": "cores/picodrive-legacy-wasm.data"
+    },
+    {
+     "from": "package/picodrive-wasm.data",
+     "to": "cores/picodrive-wasm.data"
+    },
+    {
+     "from": "package/reports/picodrive.json",
+     "to": "cores/reports/picodrive.json"
+    }
+   ]
+  },
+  {
+   "id": "core-handy",
+   "title": "Atari Lynx",
+   "core": "handy",
+   "license": "Zlib",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-handy/-/core-handy-4.2.3.tgz",
+   "sha256": "fc4aa7505b0ecf1f468e08761d64291377c2400867aec104664e6f51ce3d6966",
+   "size": 3568267,
+   "files": [
+    {
+     "from": "package/handy-legacy-wasm.data",
+     "to": "cores/handy-legacy-wasm.data"
+    },
+    {
+     "from": "package/handy-wasm.data",
+     "to": "cores/handy-wasm.data"
+    },
+    {
+     "from": "package/reports/handy.json",
+     "to": "cores/reports/handy.json"
+    }
+   ]
+  },
+  {
+   "id": "core-mame2003_plus",
+   "title": "Arcade (MAME 2003+)",
+   "core": "mame2003_plus",
+   "license": "MAME (nicht-kommerziell)",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-mame2003_plus/-/core-mame2003_plus-4.2.3.tgz",
+   "sha256": "f0018fcdf04688ac940f9bff24ccbede9fca1c4a9273093a89a66742f6da07bd",
+   "size": 21391116,
+   "files": [
+    {
+     "from": "package/mame2003_plus-legacy-wasm.data",
+     "to": "cores/mame2003_plus-legacy-wasm.data"
+    },
+    {
+     "from": "package/mame2003_plus-wasm.data",
+     "to": "cores/mame2003_plus-wasm.data"
+    },
+    {
+     "from": "package/reports/mame2003_plus.json",
+     "to": "cores/reports/mame2003_plus.json"
+    }
+   ]
+  },
+  {
+   "id": "core-mednafen_ngp",
+   "title": "Neo Geo Pocket",
+   "core": "mednafen_ngp",
+   "license": "GPL-2.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-mednafen_ngp/-/core-mednafen_ngp-4.2.3.tgz",
+   "sha256": "9436a370c4e21b5dbb18047b097b6664c608e0ed34b0ba4fe03fd0ee61c07be2",
+   "size": 3608655,
+   "files": [
+    {
+     "from": "package/mednafen_ngp-legacy-wasm.data",
+     "to": "cores/mednafen_ngp-legacy-wasm.data"
+    },
+    {
+     "from": "package/mednafen_ngp-wasm.data",
+     "to": "cores/mednafen_ngp-wasm.data"
+    },
+    {
+     "from": "package/reports/mednafen_ngp.json",
+     "to": "cores/reports/mednafen_ngp.json"
+    }
+   ]
+  },
+  {
+   "id": "core-mednafen_pce",
+   "title": "PC Engine / TurboGrafx",
+   "core": "mednafen_pce",
+   "license": "GPL-2.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-mednafen_pce/-/core-mednafen_pce-4.2.3.tgz",
+   "sha256": "b2278bd189006a7cb45ad87f8dcf3176040ecef1e079e9c1417e3de8e2683582",
+   "size": 4108776,
+   "files": [
+    {
+     "from": "package/mednafen_pce-legacy-wasm.data",
+     "to": "cores/mednafen_pce-legacy-wasm.data"
+    },
+    {
+     "from": "package/mednafen_pce-wasm.data",
+     "to": "cores/mednafen_pce-wasm.data"
+    },
+    {
+     "from": "package/reports/mednafen_pce.json",
+     "to": "cores/reports/mednafen_pce.json"
+    }
+   ]
+  },
+  {
+   "id": "core-mednafen_pcfx",
+   "title": "PC-FX",
+   "core": "mednafen_pcfx",
+   "license": "GPL-2.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-mednafen_pcfx/-/core-mednafen_pcfx-4.2.3.tgz",
+   "sha256": "2f1575966ef7688e7d1633238670e7e5ef3d023ac41a8aa18e4deb2599631fc0",
+   "size": 3935903,
+   "files": [
+    {
+     "from": "package/mednafen_pcfx-legacy-wasm.data",
+     "to": "cores/mednafen_pcfx-legacy-wasm.data"
+    },
+    {
+     "from": "package/mednafen_pcfx-wasm.data",
+     "to": "cores/mednafen_pcfx-wasm.data"
+    },
+    {
+     "from": "package/reports/mednafen_pcfx.json",
+     "to": "cores/reports/mednafen_pcfx.json"
+    }
+   ]
+  },
+  {
+   "id": "core-pcsx_rearmed",
+   "title": "PlayStation",
+   "core": "pcsx_rearmed",
+   "license": "GPL-2.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-pcsx_rearmed/-/core-pcsx_rearmed-4.2.3.tgz",
+   "sha256": "d641b90c4d4bea0a29e55803a5bc7bd02eb9980e7b4684be6e64618ff165d923",
+   "size": 4282111,
+   "files": [
+    {
+     "from": "package/pcsx_rearmed-legacy-wasm.data",
+     "to": "cores/pcsx_rearmed-legacy-wasm.data"
+    },
+    {
+     "from": "package/pcsx_rearmed-wasm.data",
+     "to": "cores/pcsx_rearmed-wasm.data"
+    },
+    {
+     "from": "package/reports/pcsx_rearmed.json",
+     "to": "cores/reports/pcsx_rearmed.json"
+    }
+   ]
+  },
+  {
+   "id": "core-mednafen_wswan",
+   "title": "WonderSwan",
+   "core": "mednafen_wswan",
+   "license": "GPL-2.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-mednafen_wswan/-/core-mednafen_wswan-4.2.3.tgz",
+   "sha256": "0fdb858f904681c51bf46a21fa0d7cfd9ecf8c8b68d385cd592dc444bf3ec4aa",
+   "size": 3634979,
+   "files": [
+    {
+     "from": "package/mednafen_wswan-legacy-wasm.data",
+     "to": "cores/mednafen_wswan-legacy-wasm.data"
+    },
+    {
+     "from": "package/mednafen_wswan-wasm.data",
+     "to": "cores/mednafen_wswan-wasm.data"
+    },
+    {
+     "from": "package/reports/mednafen_wswan.json",
+     "to": "cores/reports/mednafen_wswan.json"
+    }
+   ]
+  },
+  {
+   "id": "core-mgba",
+   "title": "Game Boy Advance",
+   "core": "mgba",
+   "license": "MPL-2.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-mgba/-/core-mgba-4.2.3.tgz",
+   "sha256": "9ea664b4f998f6304a49c31a427206e2c12a3c1aa3652765ec5aa6db42cad529",
+   "size": 4345076,
+   "files": [
+    {
+     "from": "package/mgba-legacy-wasm.data",
+     "to": "cores/mgba-legacy-wasm.data"
+    },
+    {
+     "from": "package/mgba-wasm.data",
+     "to": "cores/mgba-wasm.data"
+    },
+    {
+     "from": "package/reports/mgba.json",
+     "to": "cores/reports/mgba.json"
+    }
+   ]
+  },
+  {
+   "id": "core-mupen64plus_next",
+   "title": "Nintendo 64",
+   "core": "mupen64plus_next",
+   "license": "GPL-2.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-mupen64plus_next/-/core-mupen64plus_next-4.2.3.tgz",
+   "sha256": "2b8952aabbe32dc620cbde31b4456a16d7ff96116f471283699dc9ae09724417",
+   "size": 5963169,
+   "files": [
+    {
+     "from": "package/mupen64plus_next-legacy-wasm.data",
+     "to": "cores/mupen64plus_next-legacy-wasm.data"
+    },
+    {
+     "from": "package/mupen64plus_next-wasm.data",
+     "to": "cores/mupen64plus_next-wasm.data"
+    },
+    {
+     "from": "package/reports/mupen64plus_next.json",
+     "to": "cores/reports/mupen64plus_next.json"
+    }
+   ]
+  },
+  {
+   "id": "core-opera",
+   "title": "3DO",
+   "core": "opera",
+   "license": "LGPL/nicht-kommerziell",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-opera/-/core-opera-4.2.3.tgz",
+   "sha256": "78229d1dc4b480a8c8fa7c71e2eb36cb4dc4dcd06631fb6c95e4e47d0c67300a",
+   "size": 3535409,
+   "files": [
+    {
+     "from": "package/opera-legacy-wasm.data",
+     "to": "cores/opera-legacy-wasm.data"
+    },
+    {
+     "from": "package/opera-wasm.data",
+     "to": "cores/opera-wasm.data"
+    },
+    {
+     "from": "package/reports/opera.json",
+     "to": "cores/reports/opera.json"
+    }
+   ]
+  },
+  {
+   "id": "core-ppsspp",
+   "title": "PlayStation Portable",
+   "core": "ppsspp",
+   "license": "GPL-2.0+",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-ppsspp/-/core-ppsspp-4.2.3.tgz",
+   "sha256": "38596bf7ee879b6fdb4570a58b165af3a6e4167c98b11a5d540c6ddfa4ae3278",
+   "size": 15439219,
+   "files": [
+    {
+     "from": "package/ppsspp-thread-wasm.data",
+     "to": "cores/ppsspp-thread-wasm.data"
+    },
+    {
+     "from": "package/ppsspp-assets.zip",
+     "to": "cores/ppsspp-assets.zip"
+    },
+    {
+     "from": "package/reports/ppsspp.json",
+     "to": "cores/reports/ppsspp.json"
+    }
+   ]
+  },
+  {
+   "id": "core-prosystem",
+   "title": "Atari 7800",
+   "core": "prosystem",
+   "license": "GPL-2.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-prosystem/-/core-prosystem-4.2.3.tgz",
+   "sha256": "01c1d5d2abd1ebf4dfda44ef6531983e53b30b8c7246133af08469b9323a1eb7",
+   "size": 3529520,
+   "files": [
+    {
+     "from": "package/prosystem-legacy-wasm.data",
+     "to": "cores/prosystem-legacy-wasm.data"
+    },
+    {
+     "from": "package/prosystem-wasm.data",
+     "to": "cores/prosystem-wasm.data"
+    },
+    {
+     "from": "package/reports/prosystem.json",
+     "to": "cores/reports/prosystem.json"
+    }
+   ]
+  },
+  {
+   "id": "core-snes9x",
+   "title": "Super Nintendo",
+   "core": "snes9x",
+   "license": "Snes9x (nicht-kommerziell)",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-snes9x/-/core-snes9x-4.2.3.tgz",
+   "sha256": "0b8481c27fb929693e3c8fa3aa8773c173fa9e220c5a5b84bec234cf451a765b",
+   "size": 4500669,
+   "files": [
+    {
+     "from": "package/snes9x-legacy-wasm.data",
+     "to": "cores/snes9x-legacy-wasm.data"
+    },
+    {
+     "from": "package/snes9x-wasm.data",
+     "to": "cores/snes9x-wasm.data"
+    },
+    {
+     "from": "package/reports/snes9x.json",
+     "to": "cores/reports/snes9x.json"
+    }
+   ]
+  },
+  {
+   "id": "core-stella2014",
+   "title": "Atari 2600",
+   "core": "stella2014",
+   "license": "GPL-2.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-stella2014/-/core-stella2014-4.2.3.tgz",
+   "sha256": "848bc9d4d94eb15ab7477b5bb7bcab8a5dc9cde692177a3a49b653e618589ffb",
+   "size": 4329406,
+   "files": [
+    {
+     "from": "package/stella2014-legacy-wasm.data",
+     "to": "cores/stella2014-legacy-wasm.data"
+    },
+    {
+     "from": "package/stella2014-wasm.data",
+     "to": "cores/stella2014-wasm.data"
+    },
+    {
+     "from": "package/reports/stella2014.json",
+     "to": "cores/reports/stella2014.json"
+    }
+   ]
+  },
+  {
+   "id": "core-virtualjaguar",
+   "title": "Atari Jaguar",
+   "core": "virtualjaguar",
+   "license": "GPL-3.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-virtualjaguar/-/core-virtualjaguar-4.2.3.tgz",
+   "sha256": "1f39e30e700ae7d19dcbe3e9b1110de25188684c796f0140d7cc9e380e63e0c5",
+   "size": 3888156,
+   "files": [
+    {
+     "from": "package/virtualjaguar-legacy-wasm.data",
+     "to": "cores/virtualjaguar-legacy-wasm.data"
+    },
+    {
+     "from": "package/virtualjaguar-wasm.data",
+     "to": "cores/virtualjaguar-wasm.data"
+    },
+    {
+     "from": "package/reports/virtualjaguar.json",
+     "to": "cores/reports/virtualjaguar.json"
+    }
+   ]
+  },
+  {
+   "id": "core-yabause",
+   "title": "Sega Saturn",
+   "core": "yabause",
+   "license": "GPL-2.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-yabause/-/core-yabause-4.2.3.tgz",
+   "sha256": "9d0455856396a5cead8621ae00ac5034ad4bf58de2ebeeca5ca57d49d7e9258f",
+   "size": 4085896,
+   "files": [
+    {
+     "from": "package/yabause-legacy-wasm.data",
+     "to": "cores/yabause-legacy-wasm.data"
+    },
+    {
+     "from": "package/yabause-wasm.data",
+     "to": "cores/yabause-wasm.data"
+    },
+    {
+     "from": "package/reports/yabause.json",
+     "to": "cores/reports/yabause.json"
+    }
+   ]
+  },
+  {
+   "id": "core-puae",
+   "title": "Amiga",
+   "core": "puae",
+   "license": "GPL-2.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-puae/-/core-puae-4.2.3.tgz",
+   "sha256": "ed5c8159c5a6a989c56ca9d121dc33decda1cd6517e9683dbe760b9e2df921c7",
+   "size": 16635570,
+   "files": [
+    {
+     "from": "package/puae-legacy-wasm.data",
+     "to": "cores/puae-legacy-wasm.data"
+    },
+    {
+     "from": "package/puae-wasm.data",
+     "to": "cores/puae-wasm.data"
+    },
+    {
+     "from": "package/reports/puae.json",
+     "to": "cores/reports/puae.json"
+    }
+   ]
+  },
+  {
+   "id": "core-vice_x64sc",
+   "title": "Commodore 64",
+   "core": "vice_x64sc",
+   "license": "GPL-2.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-vice_x64sc/-/core-vice_x64sc-4.2.3.tgz",
+   "sha256": "977c9e538eb9b0e3e293a2aa5f7c2d398c27d1d3222c775a1c83854fed6ce3f7",
+   "size": 6232699,
+   "files": [
+    {
+     "from": "package/vice_x64sc-legacy-wasm.data",
+     "to": "cores/vice_x64sc-legacy-wasm.data"
+    },
+    {
+     "from": "package/vice_x64sc-wasm.data",
+     "to": "cores/vice_x64sc-wasm.data"
+    },
+    {
+     "from": "package/reports/vice_x64sc.json",
+     "to": "cores/reports/vice_x64sc.json"
+    }
+   ]
+  },
+  {
+   "id": "core-vice_x128",
+   "title": "Commodore 128",
+   "core": "vice_x128",
+   "license": "GPL-2.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-vice_x128/-/core-vice_x128-4.2.3.tgz",
+   "sha256": "4db780bd1a1670d39e428aa8eadd427317d34eb49ebe2fd4c74c2074fcf2bfd6",
+   "size": 6522202,
+   "files": [
+    {
+     "from": "package/vice_x128-legacy-wasm.data",
+     "to": "cores/vice_x128-legacy-wasm.data"
+    },
+    {
+     "from": "package/vice_x128-wasm.data",
+     "to": "cores/vice_x128-wasm.data"
+    },
+    {
+     "from": "package/reports/vice_x128.json",
+     "to": "cores/reports/vice_x128.json"
+    }
+   ]
+  },
+  {
+   "id": "core-vice_xpet",
+   "title": "Commodore PET",
+   "core": "vice_xpet",
+   "license": "GPL-2.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-vice_xpet/-/core-vice_xpet-4.2.3.tgz",
+   "sha256": "835c505c0cdcc572abfc68dee4d4f74e0f3aeba5a8bcdf60f637898b6cadb94f",
+   "size": 5606213,
+   "files": [
+    {
+     "from": "package/vice_xpet-legacy-wasm.data",
+     "to": "cores/vice_xpet-legacy-wasm.data"
+    },
+    {
+     "from": "package/vice_xpet-wasm.data",
+     "to": "cores/vice_xpet-wasm.data"
+    },
+    {
+     "from": "package/reports/vice_xpet.json",
+     "to": "cores/reports/vice_xpet.json"
+    }
+   ]
+  },
+  {
+   "id": "core-vice_xplus4",
+   "title": "Commodore Plus/4",
+   "core": "vice_xplus4",
+   "license": "GPL-2.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-vice_xplus4/-/core-vice_xplus4-4.2.3.tgz",
+   "sha256": "8ad005b8922cc2230b28683e405953a439dbb95afd28bb9da4c02955ce781d92",
+   "size": 5788482,
+   "files": [
+    {
+     "from": "package/vice_xplus4-legacy-wasm.data",
+     "to": "cores/vice_xplus4-legacy-wasm.data"
+    },
+    {
+     "from": "package/vice_xplus4-wasm.data",
+     "to": "cores/vice_xplus4-wasm.data"
+    },
+    {
+     "from": "package/reports/vice_xplus4.json",
+     "to": "cores/reports/vice_xplus4.json"
+    }
+   ]
+  },
+  {
+   "id": "core-vice_xvic",
+   "title": "Commodore VIC-20",
+   "core": "vice_xvic",
+   "license": "GPL-2.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-vice_xvic/-/core-vice_xvic-4.2.3.tgz",
+   "sha256": "d5200e8dc37fcd4ab7ad243e1bdef75dca18331b38b492a7ca5ff782783b8f55",
+   "size": 5724986,
+   "files": [
+    {
+     "from": "package/vice_xvic-legacy-wasm.data",
+     "to": "cores/vice_xvic-legacy-wasm.data"
+    },
+    {
+     "from": "package/vice_xvic-wasm.data",
+     "to": "cores/vice_xvic-wasm.data"
+    },
+    {
+     "from": "package/reports/vice_xvic.json",
+     "to": "cores/reports/vice_xvic.json"
+    }
+   ]
+  },
+  {
+   "id": "core-dosbox_pure",
+   "title": "MS-DOS",
+   "core": "dosbox_pure",
+   "license": "GPL-2.0",
+   "url": "https://registry.npmjs.org/@emulatorjs/core-dosbox_pure/-/core-dosbox_pure-4.2.3.tgz",
+   "sha256": "959aad1f152b3874db9854de13f5ba2ce02cf7a80547acf831ded8e249423bcf",
+   "size": 3587660,
+   "files": [
+    {
+     "from": "package/dosbox_pure-thread-wasm.data",
+     "to": "cores/dosbox_pure-thread-wasm.data"
+    },
+    {
+     "from": "package/reports/dosbox_pure.json",
+     "to": "cores/reports/dosbox_pure.json"
+    }
+   ]
+  }
+ ]
+}

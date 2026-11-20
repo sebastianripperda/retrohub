@@ -1,0 +1,28 @@
+[Unit]
+Description=RetroHub-Server (API und Echtzeit)
+After=network.target
+Documentation=file:///opt/retrohub/README.md
+
+[Service]
+Type=simple
+User=retrohub
+Group=retrohub
+Environment=NODE_ENV=production
+Environment=RETROHUB_DATA=/var/lib/retrohub
+Environment=RETROHUB_PORT=3000
+Environment=NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
+ExecStart=/usr/bin/node /opt/retrohub/server/server.js
+Restart=on-failure
+RestartSec=3
+# Härtung (bei Problemen in sehr alten Containern setzt setup-in-ct.sh eine reduzierte Variante)
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/retrohub
+RestrictSUIDSGID=yes
+LockPersonality=yes
+MemoryMax=512M
+
+[Install]
+WantedBy=multi-user.target

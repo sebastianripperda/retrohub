@@ -1,0 +1,17 @@
+{
+  "name": "retrohub",
+  "version": "9.1.1",
+  "private": true,
+  "description": "Lokale Retro-Spielesammlung für Proxmox LXC – Emulatoren im Browser, offline im Heimnetz",
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "check": "bash scripts/check.sh",
+    "test": "node tests/api-test.js",
+    "build": "bash scripts/build-release.sh"
+  },
+  "devDependencies": {
+    "css-tree": "3.2.1",
+    "socket.io-client": "4.8.1"
+  }
+}

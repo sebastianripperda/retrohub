@@ -4,7 +4,7 @@
 
 [Installationsleitfaden](INSTALLATIONSLEITFADEN.md) · [Änderungen](CHANGELOG.md) · [Testbericht](docs/TESTBERICHT.md) · [English summary](README.en.md)
 
-![Startseite von RetroHub](docs/screenshots/start.png)
+![Startseite von RetroHub](https://github.com/sebastianripperda/retrohub/blob/main/RetroHub-social-preview.png)
 
 > [!IMPORTANT]
 > RetroHub enthält **keine Spiele, ROMs oder BIOS-Dateien** und lädt auch keine aus dem Internet. Du fügst nur Dateien hinzu, an denen du die Rechte hast – zum Beispiel Sicherungen eigener Module, Homebrew oder frei lizenzierte Spiele.
